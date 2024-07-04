@@ -2,6 +2,7 @@ describe("Login tests", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173/");
   });
+  // bir
 
   it("Form success test", () => {
     cy.get("[data-cy='email-input']").type("ali@bas.com");
