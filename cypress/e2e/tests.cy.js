@@ -23,6 +23,7 @@ describe("Login tests", () => {
     );
   });
 
+  // üç
   it("Email & Password Validation test", () => {
     cy.get("[data-cy='email-input']").type("alibas.com");
     cy.get("[data-cy='password-input']").type("123");
