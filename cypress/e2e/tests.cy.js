@@ -12,6 +12,7 @@ describe("Login tests", () => {
     cy.get("[data-cy='submit-btn']").should("be.enabled");
   });
 
+  // iki
   it("Email Validation test", () => {
     cy.get("[data-cy='email-input']").type("alibas.com");
     cy.get("[data-cy='password-input']").type("123!'^qweQWE");
