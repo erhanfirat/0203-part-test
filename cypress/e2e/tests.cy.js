@@ -37,6 +37,7 @@ describe("Login tests", () => {
     ).should("be.visible");
   });
 
+  // dört
   it("Terms Validation test", () => {
     cy.get("[data-cy='email-input']").type("ali@bas.com");
     cy.get("[data-cy='password-input']").type("123!'^qweQWE");
