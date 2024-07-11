@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Success } from "./Success";
 
-export const Login = () => {
+export const Login = ({ user, setUser }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,6 +15,8 @@ export const Login = () => {
   });
   const [isFormValid, setIsFormValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [degerAtanmamis, setDegerAtanmamis] = useState();
+  console.log("degerAtanmamis: ", degerAtanmamis);
 
   const inputChangeHandler = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,6 +29,7 @@ export const Login = () => {
 
     if (isFormValid) {
       setSubmitted(true);
+      setUser({ ...formData });
     }
   };
 
@@ -82,12 +85,21 @@ export const Login = () => {
     return emailValid && passwordValid && termsValid;
   };
 
+  const changeDeger = () => {
+    console.log(degerAtanmamis);
+    setDegerAtanmamis("Merhaba");
+    console.log(degerAtanmamis);
+  };
+
   useEffect(() => {
     setIsFormValid(runValidations());
   }, [formData]);
 
-  return submitted ? (
-    <Success />
+  return user ? (
+    <>
+      <button onClick={() => setUser(null)}>Log out!</button>
+      <Success user={user} />
+    </>
   ) : (
     <form onSubmit={loginFormSubmit}>
       <div>
@@ -128,6 +140,7 @@ export const Login = () => {
           Login
         </button>
       </div>
+      <button onClick={changeDeger}>Set Değer Atanmamış</button>
     </form>
   );
 };

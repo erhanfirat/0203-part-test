@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.products-container > div {
+  padding: 1rem;
+  flex-basis: 300px;
+}
+
+.products-container > div > img {
+  max-width: 100%;
+}

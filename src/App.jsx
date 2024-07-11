@@ -1,35 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { Login } from "./components/Login";
+import { Header } from "./layout/Header";
+import { Footer } from "./layout/Footer";
+import { PageContent } from "./layout/PageContent";
+import axios from "axios";
+import Slider from "./components/Slider";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Uygulamanın yüklenme anı
+    axios
+      .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
+      .then((res) => {
+        // set state
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        // log error
+      });
+
+    console.warn(
+      " *************************** APP DID MOUNT ***************************"
+    );
+  }, []);
+
+  useEffect(() => {
+    console.warn(
+      " *************************** APP DID UPDATE ***************************"
+    );
+  });
 
   return (
     <>
-      <Login />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <Slider />
+      <PageContent user={user} setUser={setUser} products={products} />
+      <Footer />
     </>
   );
 }
