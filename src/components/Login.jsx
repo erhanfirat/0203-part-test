@@ -28,8 +28,20 @@ export const Login = ({ user, setUser }) => {
     e.preventDefault();
 
     if (isFormValid) {
-      setSubmitted(true);
-      setUser({ ...formData });
+      // setSubmitted(true);
+      // setUser({ ...formData });
+
+      axios.post("login-endpoint", formData)
+      .then(res => {
+        if (res.loginSuccess) {
+          // ana sayfaya yönlenme
+          history.push("/");
+        }
+      })
+      .catch(err => {
+        // show error to user
+        // stay on the login form
+      })
     }
   };
 

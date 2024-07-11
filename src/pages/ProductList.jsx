@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "reactstrap";
 
 export const ProductList = ({ products = [] }) => {
@@ -40,6 +41,11 @@ export const ProductList = ({ products = [] }) => {
             <img src={`${product.img}?random=${product.id}`} />
             <h2>{product.name}</h2>
             <p>{product.description}</p>
+            <Link
+              to={`/product/${product.id}/${product.name.replaceAll(" ", "-")}`}
+            >
+              İncele
+            </Link>
           </div>
         ))}
       </div>
